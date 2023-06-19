@@ -31,11 +31,6 @@ spec:
             configMapKeyRef:
               name: config-map
               key: HOSTNAME
-        - name: MONGO_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: config-map
-              key: MONGO_DATABASE
         - name: MONGO_PORT
           valueFrom:
             configMapKeyRef:
