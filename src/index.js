@@ -4,11 +4,17 @@ var mongodb = require("mongodb");
 var MongoClient = mongodb.MongoClient;
 const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_HOSTNAME, MONGO_PORT } = process.env;
 
-const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}?authSource=admin`;
+const url = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/mongoData?authSource=admin`;
 // all the method on this "methos file"
 var methodInstance = require("./methods")
 // connect url
-MongoClient.connect(url, methodInstance.mongoDbConnect)
+console.log('url', url);
+MongoClient.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: trye
+}).then(res => {
+    methodInstance.mongoDbConnect(res);
+})
 const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3010;
