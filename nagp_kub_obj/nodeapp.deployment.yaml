@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      labels:
+        app: nodeapp
+    spec:
+      containers:
+      - name: nodeapp-container
+        image: lokeshgupta12/lokesh_nagp:latest
+        env:
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: mongo-username
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: mongo-password
+        - name: HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: HOSTNAME
+        - name: MONGO_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: MONGO_DATABASE
+        - name: MONGO_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: MONGO_PORT
+        ports:
+        - name: http
+          protocol: TCP
+          containerPort: 3010
