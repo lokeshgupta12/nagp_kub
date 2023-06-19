@@ -18,8 +18,14 @@ var submitData = async function(req, res) {
 	// 	           "dataParticular" : req.body})
 	// });
 }
+
+var getData = async function(req, res) {
+	const stu = await student.find().toArray();
+	res.send(stu)
+}
 // export all function
 module.exports = {
   mongoDbConnect : mongoDbConnect,
-  submitData : submitData
+  submitData : submitData,
+  getData: getData
 }

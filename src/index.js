@@ -19,9 +19,7 @@ const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 3010;
 app.use(express.json());
-app.get("/getData", (req, res) => {
-       res.send("Lokesh")
-});
+app.get("/getData", methodInstance.getData);
 
 app.post("/setData", methodInstance.submitData);
 
