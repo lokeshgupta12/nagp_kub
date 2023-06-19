@@ -11,7 +11,7 @@ var methodInstance = require("./methods")
 console.log('url', url);
 MongoClient.connect(url, {
     useNewUrlParser: true,
-    useUnifiedTopology: trye
+    useUnifiedTopology: true
 }).then(res => {
     methodInstance.mongoDbConnect(res);
 })
